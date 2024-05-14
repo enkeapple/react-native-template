@@ -1,0 +1,42 @@
+name: Run Lint on PR
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - edited
+      - reopened
+
+env:
+  NODE_VERSION: 16.13.0
+
+jobs:
+  linting:
+    name: Linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Create .npmrc
+        uses: ferluisxd/create-npmrc@3
+        with:
+          org_name: enkeapple
+        env:
+          AUTH_TOKEN: ${{ secrets.auth_token }}    
+
+      - name: Install Dependencies
+        run: npm install --force
+
+      - name: Code Linting
+        run: npm run lint
+
+      - name: Type Linting
+        run: npm run typescript

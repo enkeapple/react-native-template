@@ -1,0 +1,8 @@
+{
+  "application": {
+    "title": "ReactNativeTemplate"
+  },
+  "errors": {
+    "server-unable": "Oops, something went wrong. Please wait a bit and try your action again later. Thank you for your patience!"
+  }
+}
