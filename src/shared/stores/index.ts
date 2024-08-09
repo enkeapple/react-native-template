@@ -26,7 +26,6 @@ const createStore = () => {
     collapsed: true,
   });
 
-
   return configureStore({
     reducer: rootReducer,
     middleware: getDefaultMiddleware =>
