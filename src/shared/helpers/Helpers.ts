@@ -22,7 +22,7 @@ export const capitalize = (value: string) => {
 
 export const uuid = () => nanoid();
 
-export const openLink = async (link: string) => {
+export const openLink = async (link = '') => {
   try {
     if (await InAppBrowser.isAvailable()) {
       await InAppBrowser.open(link);
@@ -42,6 +42,7 @@ export const getInitials = (fullName: string) => {
   if (names.length > 1) {
     initials += names[names.length - 1].substring(0, 1).toUpperCase();
   }
+
   return initials;
 };
 
