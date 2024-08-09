@@ -36,7 +36,6 @@
     "module": "commonjs",
     "types": [
       "react-native", 
-      "jest"
     ],
     "lib": [
       "es2019",

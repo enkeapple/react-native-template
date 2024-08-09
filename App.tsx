@@ -6,8 +6,6 @@ import { persistor, store } from 'stores';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { RootNavigator } from 'navigation';
-import { ThemeProvider } from 'styled-components';
-import { LightTheme } from 'themes';
 
 const styles = StyleSheet.create({
   layout: {
@@ -20,9 +18,7 @@ export const Application: React.FC = () => (
     <SafeAreaProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <ThemeProvider theme={LightTheme}>
-            <RootNavigator />
-          </ThemeProvider>
+          <RootNavigator />
         </PersistGate>
       </Provider>
     </SafeAreaProvider>
