@@ -5,16 +5,17 @@ import { isDev } from './Helpers';
 
 export const envSchema = z.object({
   API_URL: z.string(),
+  TERMS_AND_CONDITIONS_LINK: z.string(),
+  PRIVACY_POLICY_LINK: z.string(),
 });
 
 export const parseEnv = () => {
-  if (!isDev) {
-    return;
-  }
-
-  try {
-    envSchema.parse(Config);
-  } catch (e) {
-    console.warn(e);
+  if (isDev) {
+    try {
+      envSchema.parse(Config);
+    } catch (e) {
+      console.log(e);
+      console.warn(e);
+    }
   }
 };

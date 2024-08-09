@@ -1,10 +1,10 @@
-import { persistReducer } from 'redux-persist';
+import { PersistConfig, persistReducer } from 'redux-persist';
 import { combineReducers } from '@reduxjs/toolkit';
 import { profileApi } from 'api';
 import { StorageService } from 'services';
-import { profileReducer } from './profile';
+import { ProfileReducer, profileReducer } from './profile';
 
-const profilePersistConfig = {
+const profilePersistConfig: PersistConfig<ProfileReducer> = {
   key: 'profile',
   storage: StorageService,
   timeout: 0,

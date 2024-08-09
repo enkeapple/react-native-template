@@ -5,10 +5,18 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import { touchableConfig, setDefaultProps, parseEnv } from 'helpers';
-import { LocalizationService } from 'services';
+import { touchableConfig, setDefaultProps, parseEnv, isDev } from 'helpers';
+import { LocalizationService, ReactotronService } from 'services';
+import { UnistylesRegistry } from 'react-native-unistyles';
+import { lightTheme, darkTheme } from 'themes';
 import { Application } from './App';
 import { name as appName } from './app.json';
+
+if (isDev) {
+  ReactotronService.init();
+}
+
+UnistylesRegistry.addThemes({ light: lightTheme, dark: darkTheme });
 
 setDefaultProps(Text, { allowFontScaling: false });
 setDefaultProps(TextInput, { allowFontScaling: false });

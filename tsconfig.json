@@ -35,7 +35,8 @@
     "target": "esnext",
     "module": "commonjs",
     "types": [
-      "react-native", 
+      "react-native",
+      "jest",
     ],
     "lib": [
       "es2019",

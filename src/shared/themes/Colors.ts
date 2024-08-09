@@ -1,4 +1,4 @@
-export const LightColors = {
+export const lightColors = {
   /** Background */
 
   bg_primary: '#F2F3F5',
@@ -79,7 +79,7 @@ export const LightColors = {
   shadow: '#E1E1E1',
 };
 
-export const DarkColors = {
+export const darkColors = {
   /** Background */
 
   bg_primary: '#181A26',

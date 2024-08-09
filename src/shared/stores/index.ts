@@ -2,18 +2,20 @@ import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import {
   ActionCreator,
   ActionCreatorsMapObject,
-  AnyAction,
+  Action,
   AsyncThunk,
   bindActionCreators,
   configureStore,
 } from '@reduxjs/toolkit';
+import { createLogger } from 'redux-logger';
 import { PERSIST, REHYDRATE, persistStore } from 'redux-persist';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useMemo } from 'react';
-import { profileApi } from 'api';
 import { isDev } from 'helpers';
-import { createLogger } from 'redux-logger';
+import { ReactotronService } from 'services';
 import { rootReducer } from './rootReducer';
+
+const reactotronEnhancer = ReactotronService.init().createEnhancer!();
 
 const middlewareConfig = {
   serializableCheck: {
@@ -29,9 +31,9 @@ const createStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: getDefaultMiddleware =>
-      getDefaultMiddleware(middlewareConfig)
-        .concat(profileApi.middleware)
-        .concat(isDev ? [logger] : []),
+      getDefaultMiddleware(middlewareConfig).concat(isDev ? [logger] : []),
+    enhancers: getDefaultEnhancers =>
+      getDefaultEnhancers().concat(isDev ? [reactotronEnhancer] : []),
   });
 };
 
@@ -41,12 +43,12 @@ export const persistor = persistStore(store);
 
 export type AppDispatch = typeof store.dispatch;
 export type ReduxState = ReturnType<typeof rootReducer>;
-export type TypedDispatch = ThunkDispatch<ReduxState, any, AnyAction>;
+export type TypedDispatch = ThunkDispatch<ReduxState, any, Action>;
 export type TypedThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   ReduxState,
   unknown,
-  AnyAction
+  Action
 >;
 export const useTypedDispatch = () => useDispatch<TypedDispatch>();
 export const useTypedSelector: TypedUseSelectorHook<ReduxState> = useSelector;
