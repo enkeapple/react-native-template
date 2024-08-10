@@ -6,14 +6,23 @@ import { transformTextStyle } from './helpers';
 
 interface TextProps
   extends TextStyleProps,
-    Pick<TypographyProps, 'style' | 'children'> {}
+    Pick<TypographyProps, 'style' | 'children' | 'testID'> {}
 
-export const Text: React.FC<TextProps> = ({ style, children, ...rest }) => {
+export const Text: React.FC<TextProps> = ({
+  style,
+  children,
+  testID,
+  ...rest
+}) => {
   const { styles } = useStyles(stylesheet);
 
   const memoizedStyles = useMemo(() => styles.layout(rest), [rest]);
 
-  return <Typography style={[memoizedStyles, style]}>{children}</Typography>;
+  return (
+    <Typography testID={testID} style={[memoizedStyles, style]}>
+      {children}
+    </Typography>
+  );
 };
 
 const stylesheet = createStyleSheet(theme => {

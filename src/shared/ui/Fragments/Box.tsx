@@ -6,14 +6,23 @@ import { transformViewStyle } from './helpers';
 
 interface BoxProps
   extends ViewStyleProps,
-    Pick<ViewProps, 'style' | 'children'> {}
+    Pick<ViewProps, 'style' | 'children' | 'testID'> {}
 
-export const Box: React.FC<BoxProps> = ({ style, children, ...rest }) => {
+export const Box: React.FC<BoxProps> = ({
+  style,
+  children,
+  testID,
+  ...rest
+}) => {
   const { styles } = useStyles(stylesheet);
 
   const memoizedStyles = useMemo(() => styles.layout(rest), [rest]);
 
-  return <View style={[memoizedStyles, style]}>{children}</View>;
+  return (
+    <View testID={testID} style={[memoizedStyles, style]}>
+      {children}
+    </View>
+  );
 };
 
 const stylesheet = createStyleSheet(theme => ({

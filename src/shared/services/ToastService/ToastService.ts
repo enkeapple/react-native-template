@@ -1,7 +1,7 @@
 import Toast, { ToastPosition } from 'react-native-toast-message';
 import { hasNotch } from 'helpers';
 
-type TypeProps = 'success' | 'danger' | 'warning';
+type TypeProps = 'success' | 'danger' | 'warning' | 'info';
 
 interface ToastParams {
   type?: TypeProps;
@@ -36,11 +36,16 @@ const onWarning = (params: ToastParams) => {
   onBase({ ...params, type: 'warning' });
 };
 
+const onInfo = (params: ToastParams) => {
+  onBase({ ...params, type: 'info' });
+};
+
 const onHide = () => Toast.hide();
 
 export const ToastService = {
   onSuccess,
   onDanger,
   onHide,
+  onInfo,
   onWarning,
 };

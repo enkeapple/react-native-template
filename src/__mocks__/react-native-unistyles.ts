@@ -1,4 +1,11 @@
-jest.mock('react-native-unistyles', () => ({
-  useStyles: jest.fn(() => ({})),
-  createStyleSheet: jest.fn(styles => styles),
-}));
+jest.mock('react-native-unistyles', () => {
+  const { lightTheme } = require('themes');
+
+  return {
+    useStyles: jest.fn().mockReturnValue({
+      theme: lightTheme,
+      styles: jest.fn,
+    }),
+    createStyleSheet: jest.fn().mockReturnValue({}),
+  };
+});
