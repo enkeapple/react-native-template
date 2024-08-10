@@ -172,6 +172,61 @@ describe('ToastService', () => {
     });
   });
 
+  describe('onInfo', () => {
+    it('onInfo should call onBase with info type', () => {
+      const params = { title: 'Info', description: 'Description' };
+
+      ToastService.onInfo(params);
+
+      expect(Toast.show).toHaveBeenCalledWith({
+        text1: 'Info',
+        text2: 'Description',
+        type: 'info',
+        position: 'bottom',
+        autoHide: true,
+        topOffset: 52,
+        visibilityTime: 3000,
+      });
+    });
+
+    it('onInfo should call onBase with info type without description', () => {
+      const params = {
+        title: 'Info',
+      };
+
+      ToastService.onInfo(params);
+
+      expect(Toast.show).toHaveBeenCalledWith({
+        text1: 'Info',
+        text2: '',
+        type: 'info',
+        position: 'bottom',
+        autoHide: true,
+        topOffset: 52,
+        visibilityTime: 3000,
+      });
+    });
+
+    it('onInfo should call onBase with info type with position top', () => {
+      const params = {
+        title: 'Info',
+        position: 'top' as AnyType,
+      };
+
+      ToastService.onInfo(params);
+
+      expect(Toast.show).toHaveBeenCalledWith({
+        text1: 'Info',
+        text2: '',
+        type: 'info',
+        position: 'top',
+        autoHide: true,
+        topOffset: 52,
+        visibilityTime: 3000,
+      });
+    });
+  });
+
   describe('onHide', () => {
     it('onHide should call Toast.hide', () => {
       ToastService.onHide();

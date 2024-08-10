@@ -21,14 +21,14 @@ export const RootNavigator: React.FC = () => {
           ref={RouteService.navigationRef}>
           <Stack.Navigator>
             <Stack.Screen
-              name={Routes.MAIN_NAVIGATOR}
-              component={MainNavigator}
+              name={Routes.AUTH_NAVIGATOR}
+              component={AuthNavigator}
               options={{ headerShown: false }}
             />
 
             <Stack.Screen
-              name={Routes.AUTH_NAVIGATOR}
-              component={AuthNavigator}
+              name={Routes.MAIN_NAVIGATOR}
+              component={MainNavigator}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

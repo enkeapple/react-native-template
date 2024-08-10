@@ -8,13 +8,14 @@ interface PressableProps
   extends ViewStyleProps,
     Pick<
       TouchableOpacityProps,
-      'style' | 'children' | 'onPress' | 'activeOpacity' | 'disabled'
+      'style' | 'children' | 'onPress' | 'activeOpacity' | 'disabled' | 'testID'
     > {}
 
 export const Pressable: React.FC<PressableProps> = ({
   style,
   children,
   onPress,
+  testID,
   activeOpacity,
   disabled,
   ...rest
@@ -25,6 +26,7 @@ export const Pressable: React.FC<PressableProps> = ({
 
   return (
     <TouchableOpacity
+      testID={testID}
       activeOpacity={activeOpacity}
       style={[memoizedStyles, style]}
       disabled={disabled}
