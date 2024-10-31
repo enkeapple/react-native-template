@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { touchableConfig, setDefaultProps, parseEnv, isDev } from 'helpers';
-import { LocalizationService, ReactotronService } from 'services';
+import { LocalizationService, ReactotronService, ThemeService } from 'services';
 import { UnistylesRegistry } from 'react-native-unistyles';
 import { lightTheme, darkTheme } from 'themes';
 import { Application } from './App';
@@ -38,6 +38,8 @@ LogBox.ignoreLogs([
 ]);
 
 parseEnv();
+
+ThemeService.init();
 
 LocalizationService.init();
 

@@ -1,7 +1,7 @@
 
 # React Native Template 🚀
 
-The React Native template (v0.74.1) is your go-to toolkit for kickstarting projects effortlessly. It's crafted to slice the initial setup time significantly, giving your project a head start. 🌟
+The React Native template (v0.75.4) is your go-to toolkit for kickstarting projects effortlessly. It's crafted to slice the initial setup time significantly, giving your project a head start. 🌟
 
 A few more steps are needed after using this template to fully gear up your project.
 
@@ -20,6 +20,7 @@ Get your project cozy with private packages by adding a `.npmrc` file. This ensu
 ```sh
 //npm.pkg.github.com/:_authToken=token
 @enkeapple:registry=https://npm.pkg.github.com/
+shamefully-hoist=true
 ```
 
 ## 🎨 Themes
