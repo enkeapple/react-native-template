@@ -1,4 +1,9 @@
 {
   "name": "ReactNativeTemplate",
-  "displayName": "ReactNativeTemplate"
+  "displayName": "ReactNativeTemplate",
+  "extra": {
+    "eas": {
+      "projectId": "9baae498-1a5c-4af8-9761-02c8d259491f"
+    }
+  }
 }
