@@ -2,19 +2,12 @@ module.exports = {
   env: {
     browser: false,
     es2021: true,
-    jest: true,
+    jest: false,
   },
   extends: [
     'plugin:react/recommended',
     'airbnb',
     'plugin:prettier/recommended',
-  ],
-  overrides: [
-    {
-      // Test files only
-      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
-      extends: ['plugin:testing-library/react'],
-    },
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {

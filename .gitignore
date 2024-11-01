@@ -36,6 +36,7 @@ local.properties
 
 # node.js
 #
+.npmrc
 node_modules/
 npm-debug.log
 yarn-error.log
