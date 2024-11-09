@@ -6,4 +6,3 @@ export * from './RefreshControl';
 export * from './Toast';
 export * from './AnimatedView';
 export * from './ActivityIndicator';
-export * from './Divider';

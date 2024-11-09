@@ -10,7 +10,7 @@ module.exports = {
           { __mocks__: './src/__mocks__' },
           { features: './src/features' },
           { screens: './src/screens' },
-          { types: './src/types' },
+          { types: './src/shared/types' },
           { api: './src/shared/api' },
           { constants: './src/shared/constants' },
           { helpers: './src/shared/helpers' },
