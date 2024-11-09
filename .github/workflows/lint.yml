@@ -1,4 +1,4 @@
-name: Run Lint on PR
+name: Run Lint on Pull requests
 
 on:
   pull_request:
@@ -9,19 +9,22 @@ on:
       - reopened
 
 env:
-  NODE_VERSION: 16.13.0
+  NODE_VERSION: 20.18.0
 
 jobs:
   linting:
-    name: Linting
+    name: Linting and Type Checking
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        task: [lint, typescript]
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -30,13 +33,18 @@ jobs:
         with:
           org_name: enkeapple
         env:
-          AUTH_TOKEN: ${{ secrets.auth_token }}    
+          AUTH_TOKEN: ${{ secrets.auth_token }}
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install Dependencies
-        run: npm install --force
+        run: pnpm install --frozen-lockfile
 
-      - name: Code Linting
-        run: npm run lint
-
-      - name: Type Linting
-        run: npm run typescript
+      - name: Run Task
+        run: |
+          if [ "${{ matrix.task }}" == "lint" ]; then
+            pnpm run lint
+          elif [ "${{ matrix.task }}" == "typescript" ]; then
+            pnpm run typescript
+          fi
